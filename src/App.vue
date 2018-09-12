@@ -1,13 +1,17 @@
 <template>
   <div id="app">
-    <router-view/>
+    <!--<router-view/>-->
+    <m-header></m-header>
   </div>
 </template>
 
 <script>
-export default {
-  name: 'App'
-}
+  import  MHeader from 'components/m-header/m-header'
+  export default {
+    components: {
+        MHeader
+    }
+  }
 </script>
 
 <style>
