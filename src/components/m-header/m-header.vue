@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    hello cjq
+    HELLO CJQ
   </div>
 </template>
 
@@ -11,9 +11,10 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   @import "~common/stylus/mixin"
-  .m-header
+  #app
     position relative
     height 44px
+    line-height 44px
     text-align center
-    color $color-text
+    color $color-theme
 </style>
