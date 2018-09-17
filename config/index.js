@@ -23,6 +23,13 @@ module.exports = {
         pathRewrite: {
           '^/getDiscList': '/'
         }
+      },
+      '/getSingerList':{
+        target: 'https://c.y.qq.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/getSingerList': '/'
+        }
       }
     },
 
