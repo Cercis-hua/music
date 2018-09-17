@@ -1,6 +1,6 @@
 <template>
-  <div id="app">
-    hello cjq
+  <div class="singer">
+    <list-view :data=singerList></list-view>
   </div>
 </template>
 
@@ -8,6 +8,7 @@
   import axios from 'axios'
   import {ERR_OK} from 'api/config'
   import Singer from 'common/js/singer'
+  import ListView from 'base/listview/listview'
   const HOT_NAME = '热门'
   const HOT_SINGER_LENGTH = 10
 
@@ -95,16 +96,17 @@
               })
               return hot.concat(ret)
           }
+      },
+      components: {
+        ListView
       }
   }
 </script>
 
 <style scoped lang="stylus" rel="stylesheet/stylus">
-  @import "~common/stylus/variable"
-  @import "~common/stylus/mixin"
-  .m-header
-    position relative
-    height 44px
-    text-align center
-    color $color-text
+  .singer
+    position: fixed
+    top: 88px
+    bottom: 0
+    width: 100%
 </style>
