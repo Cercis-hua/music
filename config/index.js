@@ -10,11 +10,18 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/api':{//此处并非一定和url一致。
+      '/getRecommend':{//此处并非一定和url一致。
         target: 'https://c.y.qq.com',
         changeOrigin: true,//允许跨域
         pathRewrite: {
-          '^/api': '/'
+          '^/getRecommend': '/'
+        }
+      },
+      '/getDiscList':{
+        target: 'https://u.y.qq.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/getDiscList': '/'
         }
       }
     },
