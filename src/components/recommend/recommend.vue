@@ -25,9 +25,9 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import {getRecommend} from 'api/recommend'
   import {ERR_OK} from 'api/config'
   import Swiper from 'swiper';
+  import axios from 'axios';
 
   export default {
       data(){
@@ -41,12 +41,21 @@
       methods: {
           _getRecommend(){
               // 请求数据
-              getRecommend().then((res)=>{
-                  if(res.code === ERR_OK){
-                    // console.log(res.data.slider)
-                    this.recommends = res.data.slider
+              axios.get('api/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',{
+                  params: {
+                    platform: 'h5',
+                    uin: 0,
+                    needNewCode: 1
                   }
               })
+              .then( (res) => {
+                  if(res.data.code === ERR_OK){
+                      this.recommends = res.data.data.slider
+                  }
+              })
+              .catch( (error) => {
+                  console.log(error);
+              });
           }
       },
       components: {
