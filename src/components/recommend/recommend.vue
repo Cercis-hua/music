@@ -19,7 +19,7 @@
         <ul>
           <li @click="selectItem(item)" v-for="item in discList" class="item">
             <div class="icon">
-              <img width="60" height="60" :src="item.cover">
+              <img width="60" height="60" v-lazy="item.cover">
             </div>
             <div class="text">
               <h2 class="name" v-html="item.username"></h2>
@@ -27,6 +27,9 @@
             </div>
           </li>
         </ul>
+      </div>
+      <div class="loading-container" v-show="!discList.length">
+        <loading></loading>
       </div>
     </div>
   </div>
@@ -36,6 +39,7 @@
   import {ERR_OK} from 'api/config'
   import Swiper from 'swiper'
   import axios from 'axios'
+  import Loading from 'base/loading/loading'
 //  import {mapMutations} from 'vuex'
 
   export default {
@@ -90,13 +94,15 @@
               this.$router.push({
                   path: `/recommend/${item.id}`
               })
-              this.setDisc(item)
+//              this.setDisc(item)
           },
 //          ...mapMutations({
 //              setDisc: 'SET_DISC'
 //          })
       },
       components: {
+        Loading,
+        Swiper
       },
       updated(){
           new Swiper('.swiper-container', {
@@ -145,4 +151,9 @@
     width 100%
   img
     width 100%
+  .loading-container
+    position absolute
+    width 100%
+    top 50%
+    transform translateY(-50%)
 </style>
