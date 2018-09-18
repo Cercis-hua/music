@@ -18,6 +18,7 @@
         default: true
       },
       listenScroll: {
+        // 页面监听滚动 歌手页面使用
         type: Boolean,
         default: false
       },

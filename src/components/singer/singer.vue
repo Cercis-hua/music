@@ -10,7 +10,7 @@
   import Singer from 'common/js/singer'
   import ListView from 'base/listview/listview'
   const HOT_NAME = '热门'
-  const HOT_SINGER_LENGTH = 10
+  const HOT_SINGER_LENGTH = 8
 
   export default {
       data(){
