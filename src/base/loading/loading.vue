@@ -17,10 +17,10 @@
 <style scoped lang="stylus" rel="stylesheet/stylus">
   @import "~common/stylus/variable"
   .loading
-    width: 100%
-    text-align: center
+    width 100%
+    text-align center
     .desc
-      line-height: 20px
-      font-size: $font-size-small
-      color: $color-text-l
+      line-height 20px
+      font-size $font-size-small
+      color $color-text-l
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div class="list-view" :data="data">
+  <scroll class="list-view" :data="data">
     <ul>
       <li v-for="group in data" class="list-group">
         <h2 class="list-group-title">{{group.title}}</h2>
@@ -11,16 +11,39 @@
         </ul>
       </li>
     </ul>
-  </div>
+    <div class="list-shortcut">
+      <ul>
+        <li v-for="item in shortcutList" class="item">
+          {{item}}
+        </li>
+      </ul>
+    </div>
+    <div class="loading-container" v-show="!shortcutList.length">
+      <loading></loading>
+    </div>
+  </scroll>
 </template>
 
 <script type="text/ecmascript-6">
+  import Scroll from 'base/scroll/scroll'
+  import Loading from 'base/loading/loading'
   export default {
     props: {
       data: {
         type: Array,
         default: []
       }
+    },
+    computed: {
+      shortcutList(){
+          return this.data.map((group)=>{
+              return group.title.substr(0,1)
+          })
+      }
+    },
+    components: {
+      Scroll,
+      Loading
     }
   }
 </script>
@@ -31,7 +54,7 @@
     position relative
     width 100%
     height 100%
-    overflow scroll
+    overflow hidden
     background $color-background
     .list-group
       padding-bottom 30px

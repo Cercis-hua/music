@@ -19,7 +19,6 @@
           }
       },
       created(){
-          console.log('222')
           this._getSingerList()
       },
       methods: {
