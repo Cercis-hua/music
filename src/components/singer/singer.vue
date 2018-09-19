@@ -6,7 +6,6 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import axios from 'axios'
   import {ERR_OK} from 'api/config'
   import Singer from 'common/js/singer'
   import ListView from 'base/listview/listview'
@@ -32,7 +31,7 @@
               this.setSinger(singer)
           },
           _getSingerList(){
-              axios.get('getSingerList/v8/fcg-bin/v8.fcg',{
+              this.$http.get('getSingerList/v8/fcg-bin/v8.fcg',{
                   params: {
                       channel: 'singer',
                       page: 'list',

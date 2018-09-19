@@ -6,9 +6,11 @@ import App from './App'
 import router from './router'
 import store from './store'
 import fastclick from 'fastclick'
+import axios from 'axios'
 import VueLazyLoad from 'vue-lazyload' //图片懒加载
 import 'common/stylus/index.styl'
 
+Vue.prototype.$http = axios
 Vue.config.productionTip = false
 fastclick.attach(document.body)
 // 图片懒加载

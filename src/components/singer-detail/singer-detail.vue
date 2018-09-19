@@ -8,7 +8,6 @@
 
 <script type="text/ecmascript-6">
   import {mapGetters} from 'vuex'
-  import axios from 'axios'
   import {ERR_OK} from 'api/config'
   export default {
     data(){
@@ -28,7 +27,7 @@
     },
     methods: {
       _getSingerDetail(singerId){
-        axios.get('getSingerDetail/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',{
+        this.$http.get('getSingerDetail/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',{
           params: {
             hostUin: 0,
             needNewCode: 0,

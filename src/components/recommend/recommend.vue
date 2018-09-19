@@ -39,10 +39,9 @@
 <script type="text/ecmascript-6">
   import {ERR_OK} from 'api/config'
   import Swiper from 'swiper'
-  import axios from 'axios'
   import Loading from 'base/loading/loading'
   import Scroll from 'base/scroll/scroll'
-//  import {mapMutations} from 'vuex'
+  import {mapMutations} from 'vuex'
 
   export default {
       data(){
@@ -68,7 +67,7 @@
           },
           _getRecommend(){
               // 请求数据
-              axios.get('getRecommend/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',{
+              this.$http.get('getRecommend/musichall/fcgi-bin/fcg_yqqhomepagerecommend.fcg',{
                   params: {
                       platform: 'h5',
                       uin: 0,
@@ -86,7 +85,7 @@
           },
           _getDiscList(){
               // 请求数据
-              axios.get('getDiscList/cgi-bin/musicu.fcg',{
+              this.$http.get('getDiscList/cgi-bin/musicu.fcg',{
                   params: {
                       platform: 'yqq',
                       data: {"comm":{"ct":24},"recomPlaylist":{"method":"get_hot_recommend","param":{"async":1,"cmd":2},"module":"playlist.HotRecommendServer"}}
