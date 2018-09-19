@@ -1,6 +1,7 @@
 <template>
   <div class="singer">
-    <list-view :data=singerList></list-view>
+    <list-view :data=singerList @select="selectSinger"></list-view>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -22,6 +23,11 @@
           this._getSingerList()
       },
       methods: {
+          selectSinger(singer){
+              this.$router.push({
+                  path: `/singer/${singer.id}`
+              })
+          },
           _getSingerList(){
               axios.get('getSingerList/v8/fcg-bin/v8.fcg',{
                   params: {
