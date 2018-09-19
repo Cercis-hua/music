@@ -7,17 +7,55 @@
 </template>
 
 <script type="text/ecmascript-6">
+  import {mapGetters} from 'vuex'
+  import axios from 'axios'
+  import {ERR_OK} from 'api/config'
   export default {
     data(){
       return {
 
       }
     },
+    computed: {
+      ...mapGetters([
+        'singer'
+      ])
+    },
     created(){
-
+      console.log(this.singer)
+      console.log(JSON.stringify(this.singer))
+      this._getSingerDetail(this.singer.id)
     },
     methods: {
-
+      _getSingerDetail(singerId){
+        axios.get('getSingerDetail/v8/fcg-bin/fcg_v8_singer_track_cp.fcg',{
+          params: {
+            hostUin: 0,
+            needNewCode: 0,
+            platform: 'yqq',
+            order: 'listen',
+            begin: 0,
+            num: 100,
+            songstatus: 0,
+            singermid: singerId,
+            g_tk: 5381,
+            inCharset: 'utf-8',
+            outCharset: 'utf-8',
+            notice: 0,
+            format: 'jsonp'
+          }
+        })
+        .then( (res) => {
+          console.log(res)
+          if(res.data.code === ERR_OK){
+            this.singerList = res.data.data.list
+            console.log(this.singerList)
+          }
+        })
+        .catch( (error) => {
+          console.log(error)
+        })
+      }
     },
     components: {
 
