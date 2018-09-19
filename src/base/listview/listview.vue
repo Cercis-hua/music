@@ -10,7 +10,7 @@
         <h2 class="list-group-title">{{group.title}}</h2>
         <ul>
           <li v-for="item in group.items" class="list-group-item">
-            <img class="avatar" :src="item.avatar">
+            <img class="avatar" v-lazy="item.avatar">
             <span class="name">{{item.name}}</span>
           </li>
         </ul>
@@ -26,6 +26,9 @@
         </li>
       </ul>
     </div>
+    <div class="list-fixed" v-show="fixedTitle" ref="fixed">
+      <h1 class="fixed-title">{{fixedTitle}}</h1>
+    </div>
     <div class="loading-container" v-show="!shortcutList.length">
       <loading></loading>
     </div>
@@ -37,6 +40,7 @@
   import Loading from 'base/loading/loading'
   import {getData} from 'common/js/dom'
   const ANCHOR_HEIGHT = 18
+  const TITLE_HEIGHT = 30
   export default {
     created(){
       this.touch = {}
@@ -47,7 +51,8 @@
     data(){
       return{
         scrollY: -1,
-        curIndex: 0
+        curIndex: 0,
+        diff: -1
       }
     },
     props: {
@@ -61,6 +66,10 @@
         return this.data.map((group)=>{
           return group.title.substr(0,1)
         })
+      },
+      fixedTitle(){
+          if(this.scrollY>0) return ''
+          return this.data[this.curIndex]?this.data[this.curIndex].title:''
       }
     },
     components: {
@@ -100,7 +109,6 @@
           height += item.clientHeight
           this.listHeight.push(height)
         }
-        console.log(this.listHeight)
       }
     },
     watch: {
@@ -122,14 +130,22 @@
           let height2 = listHeight[i+1]
           if(-newY>=height1&&-newY<height2){
             this.curIndex = i
+            this.diff = height2 + newY //差值
             return
           }
         }
         // 3、滚动到最后一个
         this.curIndex = listHeight.length-2
+      },
+      diff(newVal){
+        let fixedTop = (newVal>0&&newVal<TITLE_HEIGHT)? newVal-TITLE_HEIGHT : 0
+        if(this.fixedTop === fixedTop){
+          return
+        }
+        this.fixedTop = fixedTop
+        this.$refs.fixed.style.transform = `translateY(${fixedTop}px)`
       }
     }
-
   }
 </script>
 <style scoped lang="stylus" rel="stylesheet/stylus">
