@@ -37,6 +37,13 @@ module.exports = {
         pathRewrite: {
           '^/getSingerDetail': '/'
         }
+      },
+      '/getSongUrl':{
+        target: 'https://c.y.qq.com',
+        changeOrigin: true,
+        pathRewrite: {
+          '^/getSongUrl': '/'
+        }
       }
     },
 

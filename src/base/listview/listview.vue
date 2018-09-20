@@ -78,6 +78,7 @@
     },
     methods: {
       selectItem(item){
+          console.log(item)
         // 导出事件 派发事件
         this.$emit('select',item)
       },
