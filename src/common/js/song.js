@@ -57,9 +57,6 @@ export function getMusicUrl(mid) {
   })
 }
 export function createSong(musicData,url) {
-  // getMusicUrl(musicData.songmid,data=>{
-  //   musicData.url = data
-  // })
   return new Song({
     id: musicData.songid,
     mid: musicData.songmid,
