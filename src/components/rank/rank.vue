@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    hello cjq
+    hello huahua
   </div>
 </template>
 

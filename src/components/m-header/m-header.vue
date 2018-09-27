@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    HELLO CJQ
+    HELLO HUAHUA
   </div>
 </template>
 
